@@ -13,10 +13,16 @@ class ShipApiRequests {
   Future<List<ShipsModel>> shipsAPI() async {
     Response response = await dio.get(Constants().shipsEndPoint);
     List<ShipsModel> ships = [];
+    print(response.data);
 
-    for (var item in response.data) {
-      ships.add(ShipsModel.fromJson(item));
+    try {
+      for (var item in response.data) {
+        ships.add(ShipsModel.fromJson(item));
+      }
+      return ships;
+    } catch (error) {
+      print(error);
+      throw (error);
     }
-    return ships;
   }
 }

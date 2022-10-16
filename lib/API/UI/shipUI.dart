@@ -4,18 +4,25 @@ import 'package:spacex/API/repositories/ship_repo.dart';
 
 class ShipsConn extends StatefulWidget {
   const ShipsConn({super.key});
-
   @override
   _ShipsConnState createState() => _ShipsConnState();
 }
 
 class _ShipsConnState extends State<ShipsConn> {
+  late Future<List<ShipsModel>> apiOutput;
+  @override
+  void initState() {
+    // TODO: implement initState
+    apiOutput = ShipApiRequests().shipsAPI();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: FutureBuilder<List<ShipsModel>>(
-            future: ShipApiRequests().shipsAPI(),
+            future: apiOutput,
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
                 return const CircularProgressIndicator();

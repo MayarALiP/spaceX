@@ -13,7 +13,7 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         //
         appBar: AppBar(
@@ -23,7 +23,7 @@ class _FirstScreenState extends State<FirstScreen> {
             indicatorColor: Colors.white,
             indicatorWeight: 5,
             tabs: [
-              Tab(text: ("Dragon")),
+              //Tab(text: ("Dragon")),
               Tab(text: ("Launches")),
               Tab(text: ("Ships")),
             ],
