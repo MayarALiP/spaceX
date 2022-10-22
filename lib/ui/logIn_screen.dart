@@ -145,20 +145,20 @@ class _HomeScreenState extends State<LogInScreen> {
                           backgroundColor:
                               MaterialStateProperty.all(Colors.black)),
                       onPressed: () {
-                        if (!(controllerEmail.text.contains("@") &&
-                            controllerUserName.text.isNotEmpty)) {
-                          warning =
-                              "  Either your email or user Is not correct";
-                        } else {
-                          pref.setString("Email", controllerEmail.text);
-                          pref.setString("UserName", controllerUserName.text);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const FirstScreen(),
-                            ),
-                          );
-                        }
+                        // if (!(controllerEmail.text.contains("@") &&
+                        //     controllerUserName.text.isNotEmpty)) {
+                        //   warning =
+                        //       "  Either your email or user Is not correct";
+                        // } else {
+                        //   pref.setString("Email", controllerEmail.text);
+                        //   pref.setString("UserName", controllerUserName.text);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FirstScreen(),
+                          ),
+                        );
+                        // }
                       },
                       child: const Text(
                         "Continue",

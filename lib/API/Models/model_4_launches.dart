@@ -1,22 +1,24 @@
-
 class LaunchModel {
   LaunchModel({
-    required this.missionName,
-    required this.missionId,
-    required this.launchYear,
-    required this.launchDateLocal,
+    required this.id,
+    required this.name,
+    required this.success,
+    required this.flightNumber,
+    required this.details,
   });
 
-  String missionName;
-  List<String> missionId;
-  String launchYear;
-  DateTime launchDateLocal;
+  int id;
+  String name;
+  bool success;
+  int flightNumber;
+  String details;
 
   factory LaunchModel.fromJson(Map<String, dynamic> json) => LaunchModel(
-        missionName: json["mission_name"],
-        missionId: List<String>.from(json["mission_id"].map((x) => x)),
-        launchYear: json["launch_year"],
-        launchDateLocal: DateTime.parse(json["launch_date_local"]),
+        id: json["id"],
+        name: json["name"],
+        success: json["success"],
+        flightNumber: json["flightNumber"],
+        details: json["details"],
       );
 
   // Map<String, dynamic> toJson() => {

@@ -5,15 +5,14 @@ import 'package:spacex/API/repositories/ship_repo.dart';
 class ShipsConn extends StatefulWidget {
   const ShipsConn({super.key});
   @override
-  _ShipsConnState createState() => _ShipsConnState();
+  State<ShipsConn> createState() => _ShipsConnState();
 }
 
 class _ShipsConnState extends State<ShipsConn> {
-  late Future<List<ShipsModel>> apiOutput;
+  late Future<List<ShipsModel>> apishipOutput;
   @override
   void initState() {
-    // TODO: implement initState
-    apiOutput = ShipApiRequests().shipsAPI();
+    apishipOutput = ShipApiRequests().shipsAPI();
     super.initState();
   }
 
@@ -22,7 +21,7 @@ class _ShipsConnState extends State<ShipsConn> {
     return Scaffold(
       body: Center(
         child: FutureBuilder<List<ShipsModel>>(
-            future: apiOutput,
+            future: apishipOutput,
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
                 return const CircularProgressIndicator();
@@ -32,58 +31,55 @@ class _ShipsConnState extends State<ShipsConn> {
                     itemBuilder: (context, index) {
                       ShipsModel ship = snapshot.data![index];
 
+
                       return Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                           height: 150,
                           width: 50,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1.5, color: Colors.red)),
-                          child: Column(
-                            children: [
-                              //title
+                              border: Border.all(width: 1.5, color: Colors.red),
+                              borderRadius: BorderRadius.circular(20)
+                          ),
+
+                          child: Column(children: [
                               Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 80,
-                                      height: 80,
-                                      //child: Image.network(ship.flickrImages[1]),
-                                      // fit:BoxFit.contain,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.red, width: 1)),
+                                child: Row(children: [
+                                  // image
+                                  CircleAvatar(
+                                    radius: 20.0,
+                                    child: Image.network(ship.image),
+                                    // network is correct??<---------------
+                                  ),
+                                  //
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(60, 0, 0, 10),
+                                    //
+                                    //text NAme
+                                    child: Text(ship.name,
+                                      style: const TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          60, 0, 0, 10),
-                                      child: Text(
-                                        ship.shipName,
-                                        style: const TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ]),
                               ),
-
-                              //subtitle
                               Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                 child: Row(
                                   children: [
-                                    Text(
-                                      ship.shipModel,
+                                    //ID
+                                    Text(ship.id,
                                       style: const TextStyle(fontSize: 20),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          140, 0, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(140, 0, 0, 0),
+
+                                      // active
                                       child: ElevatedButton(
                                         onPressed: () {},
                                         style: ButtonStyle(
@@ -96,16 +92,15 @@ class _ShipsConnState extends State<ShipsConn> {
                                               } else {
                                                 return Colors.red;
                                               }
-                                              // Use the component's default.)
                                             },
                                           ),
                                         ),
-                                        child: Text(ship.shipModel),
+                                        child: Text("$ship.active"),
                                       ),
                                     ),
                                   ],
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),

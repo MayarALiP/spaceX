@@ -1,23 +1,23 @@
 class ShipsModel {
   ShipsModel({
-    required this.shipId,
-    required this.shipName,
-    required this.shipModel,
-    required this.roles,
+    required this.id,
+    required this.name,
+    required this.status,
+    required this.image,
     required this.active,
   });
 
-  String shipId;
-  String shipName;
-  String shipModel;
-  List<String> roles;
+  String id;
+  String name;
+  String status;
+  String image;
   bool active;
 
   factory ShipsModel.fromJson(Map<String, dynamic> json) => ShipsModel(
-        shipId: json["ship_id"],
-        shipName: json["ship_name"],
-        shipModel: json["ship_model"],
-        roles: List<String>.from(json["roles"].map((x) => x)),
+        id: json["id"],
+        name: json["name"],
+        status: json["status"],
+        image: json["roles"],
         active: json["active"],
       );
 

@@ -4,12 +4,19 @@ import 'package:spacex/API/repositories/launches_repo.dart';
 
 class LaunchesConn extends StatefulWidget {
   const LaunchesConn({super.key});
-
   @override
-  _LaunchesConnState createState() => _LaunchesConnState();
+  State<LaunchesConn> createState() => _LaunchesConnState();
 }
 
 class _LaunchesConnState extends State<LaunchesConn> {
+  late Future<List<LaunchModel>> apiLaunOutput;
+
+  @override
+  void initState() {
+    apiLaunOutput = LaunchApiRequests().launchesAPI();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,52 +38,69 @@ class _LaunchesConnState extends State<LaunchesConn> {
                           height: 150,
                           width: 50,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1.5, color: Colors.red)),
-                          child: Column(
-                            children: [
-                              //title
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                                child: Row(
-                                  children: [
-                                    const CircleAvatar(
-                                      backgroundColor: Colors.redAccent,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          60, 0, 0, 10),
-                                      child: Text(
-                                        launches.missionName,
-                                        style: const TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              //subtitle
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      launches.launchYear,
-                                      style: const TextStyle(fontSize: 20),
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(140, 0, 0, 0),
-                                      //child:
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                            border: Border.all(width: 1.5, color: Colors.red),
+                            borderRadius: BorderRadius.circular(20),
                           ),
+
+                          child: Column(children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                              child: Row(
+                                children: [
+                                  //image
+                                  const CircleAvatar(
+                                    backgroundColor: Colors.redAccent,
+                                    //child: Image(image: NetworkImage(launches.)),
+                                  ),
+
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(60, 0, 0, 10),
+
+                                    // Id
+                                    child: Text("$launches.id",
+                                      style: const TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ]),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                              // details
+                              child: Text(
+                                launches.details,
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                //flightNumber
+                                child: Text("$launches.flightNumber")),
+                             Padding(
+                              padding: const EdgeInsets.fromLTRB(140,0,0,0),
+
+                              //success
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty
+                                        .resolveWith<Color> (
+                                          (Set<MaterialState> states) {
+                                        if (states.contains(
+                                            MaterialState.pressed)) {
+                                          return Colors.green;
+                                        } else {
+                                          return Colors.red;
+                                        }
+                                      },
+                                  ),
+                                  ),
+                                  child: Text("$launches.success"),
+                             ),
+                           ),
+                          ]),
                         ),
                       );
                     });

@@ -11,8 +11,10 @@ class ShipApiRequests {
   }
 
   Future<List<ShipsModel>> shipsAPI() async {
-    Response response = await dio.get(Constants().shipsEndPoint);
+    Response response =
+        await dio.get(Constants().baseurl + Constants().shipsEndPoint);
     List<ShipsModel> ships = [];
+
     print(response.data);
 
     try {

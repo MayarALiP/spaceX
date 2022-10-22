@@ -16,7 +16,7 @@ class _IntroScreenState extends State<IntroScreen> {
     // TODO: implement initState
     super.initState();
     Timer(
-      const Duration(seconds: 5),
+      const Duration(seconds: 7),
       () => Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const StartTabs()),
