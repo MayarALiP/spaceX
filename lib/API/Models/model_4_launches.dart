@@ -7,7 +7,7 @@ class LaunchModel {
     required this.details,
   });
 
-  int id;
+  String id;
   String name;
   bool success;
   int flightNumber;
@@ -16,9 +16,9 @@ class LaunchModel {
   factory LaunchModel.fromJson(Map<String, dynamic> json) => LaunchModel(
         id: json["id"],
         name: json["name"],
-        success: json["success"],
-        flightNumber: json["flightNumber"],
-        details: json["details"],
+        success: json["success"] ?? false,
+        flightNumber: json["flight_number"],
+        details: json["details"] ?? " ",
       );
 
   // Map<String, dynamic> toJson() => {

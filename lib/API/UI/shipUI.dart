@@ -31,78 +31,81 @@ class _ShipsConnState extends State<ShipsConn> {
                     itemBuilder: (context, index) {
                       ShipsModel ship = snapshot.data![index];
 
-
                       return Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
-                          height: 150,
+                          height: 180,
                           width: 50,
                           decoration: BoxDecoration(
-                              border: Border.all(width: 1.5, color: Colors.red),
-                              borderRadius: BorderRadius.circular(20)
+                            border: Border.all(width: 2, color: Colors.white60),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-
+                          //
+                          //
                           child: Column(children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                                child: Row(children: [
-                                  // image
-                                  CircleAvatar(
-                                    radius: 20.0,
-                                    child: Image.network(ship.image),
-                                    // network is correct??<---------------
+                            //Image
+                            Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              child: Row(children: [
+                                // image
+                                CircleAvatar(
+                                  radius: 38.0,
+                                  backgroundColor: Colors.red[900],
+                                  child: CircleAvatar(
+                                    radius: 35.0,
+                                    backgroundImage: NetworkImage(ship.image),
                                   ),
-                                  //
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(60, 0, 0, 10),
-                                    //
-                                    //text NAme
-                                    child: Text(ship.name,
-                                      style: const TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                child: Row(
-                                  children: [
-                                    //ID
-                                    Text(ship.id,
-                                      style: const TextStyle(fontSize: 20),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(140, 0, 0, 0),
-
-                                      // active
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        style: ButtonStyle(
-                                          backgroundColor: MaterialStateProperty
-                                              .resolveWith<Color>(
-                                            (Set<MaterialState> states) {
-                                              if (states.contains(
-                                                  MaterialState.pressed)) {
-                                                return Colors.green;
-                                              } else {
-                                                return Colors.red;
-                                              }
-                                            },
-                                          ),
-                                        ),
-                                        child: Text("$ship.active"),
-                                      ),
-                                    ),
-                                  ],
                                 ),
+                                //
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                                  //
+                                  //text NAme
+                                  child: Text(
+                                    ship.name,
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ]),
+                              //
+                              //
+                            ),
+
+                            // ID
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                              child: Text(
+                                ("ship ID is ${ship.id}"),
+                                style: const TextStyle(fontSize: 14),
                               ),
-                            ],
-                          ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                              // active
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                // style:  ButtonStyle(
+                                //   shape: RoundedRectangleBorder( borderRadius: BorderRadius.only(
+                                //       topLeft: Radius.circular(30),
+                                //       topRight: Radius.elliptical(30, 30),
+                                //       ),
+                                //    ),
+                                //     backgroundColor: MaterialStateProperty.all<Color>(
+                                //         (if (ship.active == true) {
+                                // Colors.green;
+                                // } else
+                                //     Colors.green;
+                                //   ),
+                                //  ),
+                                // ),
+                                child: Text("${ship.active}"),
+                              ),
+                            ),
+                          ]),
                         ),
                       );
                     });
@@ -114,3 +117,11 @@ class _ShipsConnState extends State<ShipsConn> {
     );
   }
 }
+
+/**
+ * ElevatedButton.styleFrom(
+
+    ),
+    ),
+    )
+ */

@@ -16,8 +16,9 @@ class ShipsModel {
   factory ShipsModel.fromJson(Map<String, dynamic> json) => ShipsModel(
         id: json["id"],
         name: json["name"],
-        status: json["status"],
-        image: json["roles"],
+        status: json["status"] ?? "",
+        image: json["image"] ??
+            "https://photos.marinetraffic.com/ais/showphoto.aspx?photoid=3406596",
         active: json["active"],
       );
 

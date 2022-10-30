@@ -16,6 +16,7 @@ class _HomeScreenState extends State<LogInScreen> {
   late SharedPreferences pref;
   bool rememberMe = false;
   String warning = "  ";
+  String email = " ";
 
   void initialPref() async {
     pref = await SharedPreferences.getInstance();
@@ -27,22 +28,29 @@ class _HomeScreenState extends State<LogInScreen> {
     initialPref();
   }
 
+  Future getValidationData() async {
+    final SharedPreferences rememberUser =
+        await SharedPreferences.getInstance();
+    var obtainedEmail = SharedPreferences.getInstance();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //
       appBar: AppBar(
-        toolbarHeight: 120,
-        titleSpacing: 150,
-        //مسافة لليمين
-        backgroundColor: Colors.black,
+        centerTitle: true,
+        backgroundColor: Colors.white60,
         title: const Text(
           "Sign Up",
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 20,
+              //fontWeight: FontWeight.bold,
+              color: Colors.white),
         ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(80),
+            bottomLeft: Radius.circular(70),
           ),
         ),
       ),
@@ -144,7 +152,7 @@ class _HomeScreenState extends State<LogInScreen> {
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.black)),
-                      onPressed: () {
+                      onPressed: () async {
                         // if (!(controllerEmail.text.contains("@") &&
                         //     controllerUserName.text.isNotEmpty)) {
                         //   warning =
@@ -152,13 +160,15 @@ class _HomeScreenState extends State<LogInScreen> {
                         // } else {
                         //   pref.setString("Email", controllerEmail.text);
                         //   pref.setString("UserName", controllerUserName.text);
+                        //final SharedPreferences
+                        pref.setString("email", controllerEmail.text);
+                        pref.setString("password", controllerPassword.text);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const FirstScreen(),
                           ),
                         );
-                        // }
                       },
                       child: const Text(
                         "Continue",

@@ -35,71 +35,77 @@ class _LaunchesConnState extends State<LaunchesConn> {
                       return Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
-                          height: 150,
+                          height: 210,
                           width: 50,
                           decoration: BoxDecoration(
-                            border: Border.all(width: 1.5, color: Colors.red),
+                            border: Border.all(width: 4, color: Colors.white),
                             borderRadius: BorderRadius.circular(20),
                           ),
-
                           child: Column(children: [
                             Padding(
                               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                              child: Row(
-                                children: [
-                                  //image
-                                  const CircleAvatar(
+                              child: Row(children: [
+                                //image
+                                const CircleAvatar(
                                     backgroundColor: Colors.redAccent,
-                                    //child: Image(image: NetworkImage(launches.)),
-                                  ),
+                                    radius: 38.0,
+                                    child: CircleAvatar(
+                                      radius: 35.0,
+                                      backgroundImage: NetworkImage(
+                                          "https://images2.imgbox.com/5b/02/QcxHUb5V_o.png"),
+                                    )),
 
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(60, 0, 0, 10),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(5, 0, 0, 10),
 
-                                    // Id
-                                    child: Text("$launches.id",
-                                      style: const TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  // Id
+                                  child: Text(
+                                    launches.id,
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                ]),
+                                ),
+                              ]),
                             ),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                               // details
                               child: Text(
                                 launches.details,
-                                style: const TextStyle(fontSize: 20),
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                             Padding(
                                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                 //flightNumber
-                                child: Text("$launches.flightNumber")),
-                             Padding(
-                              padding: const EdgeInsets.fromLTRB(140,0,0,0),
+                                child: Text("${launches.flightNumber}")),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
 
                               //success
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color> (
-                                          (Set<MaterialState> states) {
-                                        if (states.contains(
-                                            MaterialState.pressed)) {
-                                          return Colors.green;
-                                        } else {
-                                          return Colors.red;
-                                        }
-                                      },
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.resolveWith<Color>(
+                                    (Set<MaterialState> states) {
+                                      if (states
+                                          .contains(MaterialState.pressed)) {
+                                        return Colors.green;
+                                      } else {
+                                        return Colors.red;
+                                      }
+                                    },
                                   ),
-                                  ),
-                                  child: Text("$launches.success"),
-                             ),
-                           ),
+                                ),
+                                child: Text("${launches.success}"),
+                              ),
+                            ),
                           ]),
                         ),
                       );
